@@ -24,8 +24,12 @@ public class FinalGrammar {
         return new LeftRecursionImpl(this.grammar).fixLeftRecursion();
     }
 
-    public Grammar removeLambdaGrammar() {
+    public Grammar lambdaRemovalGrammar() {
         return new LambdaRemovalRemovalImpl(leftRecursionGrammar()).removeLambda();
+    }
+
+    public Grammar unitRemovalGrammar() {
+        return new UnitRemovalImpl(lambdaRemovalGrammar()).unitRemovalFix();
     }
 
     public String formattedGrammar() {
