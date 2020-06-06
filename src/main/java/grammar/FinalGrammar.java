@@ -25,7 +25,7 @@ public class FinalGrammar {
     }
 
     public Grammar removeLambdaGrammar() {
-        return new RemoveLambdaImpl(leftRecursionGrammar()).removeLambda();
+        return new LambdaRemovalRemovalImpl(leftRecursionGrammar()).removeLambda();
     }
 
     public String formattedGrammar() {

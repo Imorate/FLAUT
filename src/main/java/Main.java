@@ -5,6 +5,6 @@ public class Main {
         FinalGrammar finalGrammar = new FinalGrammar();
         System.out.println("Left recursion fix:\t" + finalGrammar.leftRecursionGrammar());
         System.out.println("Remove lambda:\t" + finalGrammar.removeLambdaGrammar());
-        System.out.println(finalGrammar.formattedGrammar());
+        System.out.print(finalGrammar.formattedGrammar());
     }
 }
