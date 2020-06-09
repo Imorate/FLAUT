@@ -1,6 +1,5 @@
 package grammar;
 
-import grammar.interfaces.GrammarParser;
 import grammar.model.Grammar;
 import lombok.Data;
 
@@ -12,8 +11,7 @@ public class FinalGrammar {
     private Grammar grammar;
 
     public FinalGrammar() {
-        GrammarParser grammarParser = new GrammarParserImpl();
-        this.grammar = grammarParser.parseGrammar();
+        this.grammar = new GrammarParserImpl().parseGrammar();
     }
 
     public Grammar mainGrammar() {
