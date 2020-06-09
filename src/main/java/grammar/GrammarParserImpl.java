@@ -34,7 +34,9 @@ public class GrammarParserImpl implements GrammarParser {
         String[] productionArr = pattern.split(productionStr);
         Set<String> ruleSet = new LinkedHashSet<>();
         for (int i = 1; i < productionArr.length && isBeta(productionArr[i]); i++) {
-            ruleSet.add(productionArr[i].trim());
+            if(!productionArr[0].equals(productionArr[i])){
+                ruleSet.add(productionArr[i].trim());
+            }
         }
         if (isAlpha(productionArr[0]) && !this.productions.containsKey(productionArr[0])) {
             this.productions.put(productionArr[0], ruleSet);
