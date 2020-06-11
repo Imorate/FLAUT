@@ -1,9 +1,9 @@
-package grammar;
+package ir.imorate.grammar;
 
-import grammar.interfaces.LambdaRemoval;
-import grammar.model.Grammar;
+import ir.imorate.grammar.interfaces.LambdaRemoval;
+import ir.imorate.grammar.model.Grammar;
 import lombok.Data;
-import utils.ProductionType;
+import ir.imorate.utils.ProductionType;
 
 import java.util.*;
 
@@ -33,7 +33,12 @@ public class LambdaRemovalRemovalImpl implements LambdaRemoval {
         Set<String> ruleSet = new LinkedHashSet<>();
         for (String rule : entry.getValue()) {
             if (lambdaList.peek() != null && rule.contains(lambdaList.peek())) {
-                String replacedStr = rule.replace(lambdaList.peek(), "");
+                String replacedStr;
+                if (lambdaList.peek().contains("'")) {
+                    replacedStr = rule.replace(lambdaList.peek(), "");
+                } else {
+                    replacedStr = replaceWithoutLeftRecursion(lambdaList.peek(), rule);
+                }
                 if (replacedStr.equals("") && !entry.getKey().equals(String.valueOf(this.grammar.getStartVariable()))) {
                     ruleSet.add(rule);
                     lambdaList.add(entry.getKey());
@@ -95,5 +100,18 @@ public class LambdaRemovalRemovalImpl implements LambdaRemoval {
             }
         }
         return singleLambdaSet;
+    }
+
+    public String replaceWithoutLeftRecursion(String var, String rule) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < rule.length(); i++) {
+            char ch = rule.charAt(i);
+            if (ch != var.charAt(0)) {
+                result.append(ch);
+            } else if (ch == var.charAt(0) && i + 1 < rule.length() && rule.charAt(i + 1) == '\'') {
+                result.append(ch);
+            }
+        }
+        return result.toString();
     }
 }

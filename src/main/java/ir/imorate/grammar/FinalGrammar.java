@@ -1,6 +1,6 @@
-package grammar;
+package ir.imorate.grammar;
 
-import grammar.model.Grammar;
+import ir.imorate.grammar.model.Grammar;
 import lombok.Data;
 
 import java.util.Map;

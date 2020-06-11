@@ -1,9 +1,9 @@
-package grammar;
+package ir.imorate.grammar;
 
-import grammar.interfaces.GrammarParser;
-import grammar.model.Grammar;
+import ir.imorate.grammar.interfaces.GrammarParser;
+import ir.imorate.grammar.model.Grammar;
 import lombok.Data;
-import utils.GrammarFile;
+import ir.imorate.utils.GrammarFile;
 
 import java.util.*;
 import java.util.regex.Pattern;
@@ -20,8 +20,7 @@ public class GrammarParserImpl implements GrammarParser {
     @Override
     public Grammar parseGrammar() {
         Grammar grammar = new Grammar();
-        GrammarFile grammarFile = new GrammarFile();
-        Optional<List<String>> grammarFileContent = grammarFile.readGrammar();
+        Optional<List<String>> grammarFileContent = new GrammarFile().readGrammar();
         grammarFileContent.ifPresent(list -> grammar.setStartVariable(list.get(0).charAt(0)));
         grammarFileContent.ifPresent(lineList -> lineList.forEach(this::mapProductions));
         grammar.setProductions(this.productions);

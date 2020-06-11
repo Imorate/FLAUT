@@ -1,9 +1,9 @@
-package grammar;
+package ir.imorate.grammar;
 
-import grammar.interfaces.LeftRecursion;
-import grammar.model.Grammar;
+import ir.imorate.grammar.interfaces.LeftRecursion;
+import ir.imorate.grammar.model.Grammar;
 import lombok.Data;
-import utils.ProductionType;
+import ir.imorate.utils.ProductionType;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -46,11 +46,11 @@ public class LeftRecursionImpl implements LeftRecursion {
         Set<String> mainProduction = new LinkedHashSet<>();
         Set<String> secondaryProduction = new LinkedHashSet<>();
         for (String rule : entry.getValue()) {
-            if (ProductionType.isTerminal(rule)) {
+            if (ProductionType.isTerminalProduction(rule)) {
                 mainProduction.add(rule + entry.getKey() + "'");
-            } else if (ProductionType.isNonTerminal(rule) && !hasLeftRecursion(entry.getKey(), rule)) {
+            } else if (ProductionType.isNonTerminalProduction(rule) && !hasLeftRecursion(entry.getKey(), rule)) {
                 mainProduction.add(rule + entry.getKey() + "'");
-            } else if (ProductionType.isNonTerminal(rule) && hasLeftRecursion(entry.getKey(), rule)) {
+            } else if (ProductionType.isNonTerminalProduction(rule) && hasLeftRecursion(entry.getKey(), rule)) {
                 secondaryProduction.add(rule.substring(1).concat(entry.getKey() + "'"));
             } else {
                 mainProduction.add(rule);

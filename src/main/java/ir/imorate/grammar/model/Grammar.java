@@ -1,4 +1,4 @@
-package grammar.model;
+package ir.imorate.grammar.model;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package utils;
+package ir.imorate.utils;
 
 import lombok.Data;
 import org.apache.commons.io.FileUtils;

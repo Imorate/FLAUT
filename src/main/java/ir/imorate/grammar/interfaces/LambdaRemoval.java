@@ -1,6 +1,6 @@
-package grammar.interfaces;
+package ir.imorate.grammar.interfaces;
 
-import grammar.model.Grammar;
+import ir.imorate.grammar.model.Grammar;
 
 import java.util.Map;
 import java.util.Queue;
