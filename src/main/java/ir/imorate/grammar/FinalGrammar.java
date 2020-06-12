@@ -19,15 +19,18 @@ public class FinalGrammar {
     }
 
     public Grammar leftRecursionGrammar() {
-        return new LeftRecursionImpl(this.grammar).fixLeftRecursion();
+        this.grammar = new LeftRecursionImpl(this.grammar).fixLeftRecursion();
+        return this.grammar;
     }
 
     public Grammar lambdaRemovalGrammar() {
-        return new LambdaRemovalRemovalImpl(leftRecursionGrammar()).removeLambda();
+        this.grammar = new LambdaRemovalRemovalImpl(this.grammar).removeLambda();
+        return this.grammar;
     }
 
     public Grammar unitRemovalGrammar() {
-        return new UnitRemovalImpl(lambdaRemovalGrammar()).unitRemovalFix();
+        this.grammar = new UnitRemovalImpl(this.grammar).unitRemovalFix();
+        return this.grammar;
     }
 
     public String formattedGrammar() {

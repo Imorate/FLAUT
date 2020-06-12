@@ -2,8 +2,8 @@ package ir.imorate.grammar;
 
 import ir.imorate.grammar.interfaces.LambdaRemoval;
 import ir.imorate.grammar.model.Grammar;
-import lombok.Data;
 import ir.imorate.utils.ProductionType;
+import lombok.Data;
 
 import java.util.*;
 
@@ -102,6 +102,7 @@ public class LambdaRemovalRemovalImpl implements LambdaRemoval {
         return singleLambdaSet;
     }
 
+    @Override
     public String replaceWithoutLeftRecursion(String var, String rule) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < rule.length(); i++) {

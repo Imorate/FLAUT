@@ -28,6 +28,7 @@ public class LeftRecursionImpl implements LeftRecursion {
         return false;
     }
 
+    @Override
     public Grammar fixLeftRecursion() {
         Map<String, Set<String>> grammarProduction = new LinkedHashMap<>();
         for (Map.Entry<String, Set<String>> entry : this.grammar.getProductions().entrySet()) {

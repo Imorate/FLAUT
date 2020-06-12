@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Data
-public class Grammar {
+public class Grammar{
     private char startVariable;
     private Map<String, Set<String>> productions;
 

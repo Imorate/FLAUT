@@ -16,4 +16,6 @@ public interface LambdaRemoval {
     Grammar fixSingleLambdaProduction();
 
     Set<String> singleLambdaProductionSet();
+
+    String replaceWithoutLeftRecursion(String var, String rule);
 }
