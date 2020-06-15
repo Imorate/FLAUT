@@ -2,7 +2,7 @@ package ir.imorate.utils;
 
 public class ProductionType {
     public static boolean isNonTerminalProduction(String str) {
-        return str.matches("[a-zA-Z0-9']+");
+        return str.matches("[a-zA-Z0-9]+'?");
     }
 
     public static boolean isTerminalProduction(String str) {
@@ -14,7 +14,7 @@ public class ProductionType {
     }
 
     public static boolean isUnitProduction(String str) {
-        return str.matches("[A-Z0-9']");
+        return str.matches("[A-Z0-9]'?");
     }
 
     public static boolean isNonUnitProduction(String str) {

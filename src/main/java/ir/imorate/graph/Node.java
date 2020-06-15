@@ -10,6 +10,6 @@ public class Node<T> {
 
     @Override
     public String toString() {
-        return "{" + label + '}';
+        return String.valueOf(this.label);
     }
 }

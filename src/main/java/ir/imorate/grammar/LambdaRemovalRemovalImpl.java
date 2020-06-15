@@ -2,6 +2,7 @@ package ir.imorate.grammar;
 
 import ir.imorate.grammar.interfaces.LambdaRemoval;
 import ir.imorate.grammar.model.Grammar;
+import ir.imorate.utils.Constants;
 import ir.imorate.utils.ProductionType;
 import lombok.Data;
 
@@ -44,7 +45,7 @@ public class LambdaRemovalRemovalImpl implements LambdaRemoval {
                     lambdaList.add(entry.getKey());
                 } else if (replacedStr.equals("") && entry.getKey().equals(String.valueOf(this.grammar.getStartVariable()))) {
                     ruleSet.add(rule);
-                    ruleSet.add("λ");
+                    ruleSet.add(Constants.LAMBDA);
                 } else {
                     ruleSet.add(rule);
                     ruleSet.add(replacedStr);

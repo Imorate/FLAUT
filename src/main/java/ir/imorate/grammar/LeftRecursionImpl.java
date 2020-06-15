@@ -2,8 +2,9 @@ package ir.imorate.grammar;
 
 import ir.imorate.grammar.interfaces.LeftRecursion;
 import ir.imorate.grammar.model.Grammar;
-import lombok.Data;
+import ir.imorate.utils.Constants;
 import ir.imorate.utils.ProductionType;
+import lombok.Data;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -32,8 +33,7 @@ public class LeftRecursionImpl implements LeftRecursion {
     public Grammar fixLeftRecursion() {
         Map<String, Set<String>> grammarProduction = new LinkedHashMap<>();
         for (Map.Entry<String, Set<String>> entry : this.grammar.getProductions().entrySet()) {
-            boolean leftRecursionFlag = hasLeftRecursionFlag(entry);
-            if (!leftRecursionFlag) {
+            if (!hasLeftRecursionFlag(entry)) {
                 grammarProduction.put(entry.getKey(), entry.getValue());
             } else {
                 leftRecursionProductions(entry, grammarProduction);
@@ -57,7 +57,7 @@ public class LeftRecursionImpl implements LeftRecursion {
                 mainProduction.add(rule);
             }
         }
-        secondaryProduction.add("λ");
+        secondaryProduction.add(Constants.LAMBDA);
         productions.put(entry.getKey(), mainProduction);
         productions.put(entry.getKey() + "'", secondaryProduction);
     }

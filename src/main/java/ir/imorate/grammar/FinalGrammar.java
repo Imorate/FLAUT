@@ -33,6 +33,11 @@ public class FinalGrammar {
         return this.grammar;
     }
 
+    public Grammar uselessProductionRemovalGrammar() {
+        this.grammar = new UselessProductionRemovalImpl(this.grammar).uselessProductionRemovalFix();
+        return this.grammar;
+    }
+
     public String formattedGrammar() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Map.Entry<String, Set<String>> entry : this.grammar.getProductions().entrySet()) {

@@ -95,7 +95,7 @@ public class UnitRemovalImpl implements UnitRemoval {
         Graph<String> graph = new Graph<>();
         for (Map.Entry<String, Set<String>> entry : this.grammar.getProductions().entrySet()) {
             for (String rule : entry.getValue()) {
-                if (ProductionType.isUnitProduction(rule) && rule.length() == 1) {
+                if (ProductionType.isUnitProduction(rule)) {
                     graph.insert(entry.getKey(), rule);
                 }
             }
