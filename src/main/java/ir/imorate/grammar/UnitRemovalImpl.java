@@ -22,7 +22,6 @@ public class UnitRemovalImpl implements UnitRemoval {
 
     @Override
     public Grammar unitRemovalFix() {
-        System.out.println(this.dependencyGraph);
         for (Map.Entry<Node<String>, LinkedList<Node<String>>> entry : this.dependencyGraph.getAdjacencyMap().entrySet()) {
             if (!entry.getValue().isEmpty()) {
                 Node<String> nodeVar = entry.getKey();

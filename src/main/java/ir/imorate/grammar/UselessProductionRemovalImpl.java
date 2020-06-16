@@ -44,7 +44,21 @@ public class UselessProductionRemovalImpl {
             }
             entry.setValue(productions);
         }
-        return grammar;
+        this.grammar = grammar;
+        this.dependencyGraph = mapToDependencyGraph();
+        if (!this.dependencyGraph.getAdjacencyMap().isEmpty()) {
+            Set<Node<String>> finalSet = bfsTraverse(String.valueOf(this.grammar.getStartVariable()));
+            if (!finalSet.isEmpty()) {
+                Set<String> mustRemoveVar = new LinkedHashSet<>();
+                for (Map.Entry<String, Set<String>> entry : this.grammar.getProductions().entrySet()) {
+                    if (!entry.getKey().equals(String.valueOf(this.grammar.getStartVariable())) && !finalSet.contains(new Node<>(entry.getKey()))) {
+                        mustRemoveVar.add(entry.getKey());
+                    }
+                }
+                mustRemoveVar.forEach(var -> this.grammar.getProductions().remove(var));
+            }
+        }
+        return this.grammar;
     }
 
     public boolean isValidRule(String str, Set<String> variables) {
@@ -60,13 +74,27 @@ public class UselessProductionRemovalImpl {
         Graph<String> graph = new Graph<>();
         for (Map.Entry<String, Set<String>> entry : this.grammar.getProductions().entrySet()) {
             for (String rule : entry.getValue()) {
-                ruleToSet(entry.getKey(), rule).forEach(var -> graph.insert(entry.getKey(), var));
+                ruleToSetWithoutVar(entry.getKey(), rule)
+                        .forEach(var -> graph.insert(entry.getKey(), var));
             }
         }
         return graph;
     }
 
-    public Set<String> ruleToSet(String var, String rule) {
+    public Set<String> ruleToSet(String rule) {
+        Set<String> set = new LinkedHashSet<>();
+        for (int i = 0; i < rule.length(); i++) {
+            char ch = rule.charAt(i);
+            if (Character.isUpperCase(ch) && (i + 1) < rule.length() && rule.charAt(i + 1) == '\'') {
+                set.add(ch + "'");
+            } else if (Character.isUpperCase(ch)) {
+                set.add(String.valueOf(ch));
+            }
+        }
+        return set;
+    }
+
+    public Set<String> ruleToSetWithoutVar(String var, String rule) {
         Set<String> set = new LinkedHashSet<>();
         for (int i = 0; i < rule.length(); i++) {
             char ch = rule.charAt(i);

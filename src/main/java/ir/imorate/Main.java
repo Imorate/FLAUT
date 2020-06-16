@@ -10,6 +10,6 @@ public class Main {
         System.out.println("Lambda removal:\t" + finalGrammar.lambdaRemovalGrammar());
         System.out.println("Unit removal:\t" + finalGrammar.unitRemovalGrammar());
         System.out.println("Useless production removal:\t" + finalGrammar.uselessProductionRemovalGrammar());
-        System.out.print(finalGrammar.formattedGrammar());
+        System.out.println(finalGrammar.formattedGrammar());
     }
 }
