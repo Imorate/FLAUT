@@ -9,7 +9,7 @@ import java.util.Stack;
 @Data
 public class VariableGenerator {
     private Grammar grammar;
-    private Stack<Character> variableStack;
+    private Stack<String> variableStack;
 
     public VariableGenerator(Grammar grammar) {
         this.grammar = grammar;
@@ -23,16 +23,16 @@ public class VariableGenerator {
         for (int i = 65; i < 91; i++) {
             char ch = (char) i;
             if (ch != grammarStartVariable && !characterSet.contains(String.valueOf(ch))) {
-                this.variableStack.push((char) i);
+                this.variableStack.push((String.valueOf((char) i)));
             }
         }
     }
 
-    public char popVariableStack() {
+    public String popVariableStack() {
         if (!this.variableStack.isEmpty()) {
             return this.variableStack.pop();
 
         }
-        return 0;
+        return "";
     }
 }
