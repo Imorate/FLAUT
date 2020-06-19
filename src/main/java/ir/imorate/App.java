@@ -22,6 +22,14 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+        /*FinalGrammar finalGrammar = new FinalGrammar();
+        System.out.println("Parsed grammar:\t" + finalGrammar.mainGrammar());
+        System.out.println("Left recursion fix:\t" + finalGrammar.leftRecursionGrammar());
+        System.out.println("Lambda removal:\t" + finalGrammar.lambdaRemovalGrammar());
+        System.out.println("Unit removal:\t" + finalGrammar.unitRemovalGrammar());
+        System.out.println("Useless production removal:\t" + finalGrammar.uselessProductionRemovalGrammar());
+        System.out.println("Chomsky normal form:\t" + finalGrammar.toChomskyNormalForm());
+        System.out.println(finalGrammar.formattedGrammar());*/
     }
 
     @Override

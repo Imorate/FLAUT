@@ -14,6 +14,10 @@ public class FinalGrammar {
         this.grammar = new GrammarParserImpl().parseGrammar();
     }
 
+    public FinalGrammar(String str) {
+        this.grammar = new GrammarParserImpl().parseGrammar(str);
+    }
+
     public Grammar mainGrammar() {
         return this.grammar;
     }
