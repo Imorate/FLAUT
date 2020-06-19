@@ -19,6 +19,7 @@ public class ChomskyNormalForm {
     }
 
     public Grammar toChomskyNormalForm() {
+        // TODO Grammar with left recursion not supported
         if (isntInChomskyNormalForm()) {
             this.grammar = initializeToCNF();
             while (isntInChomskyNormalForm()) {
