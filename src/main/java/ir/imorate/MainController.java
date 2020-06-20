@@ -38,7 +38,13 @@ public class MainController {
         progressBar.setProgress(0);
         this.grammar = null;
         this.level = 0;
+        grammarTextArea.setEditable(true);
         levelLabel.setText("#1");
+    }
+
+    @FXML
+    public void exit() {
+        System.exit(0);
     }
 
     @FXML
@@ -51,10 +57,11 @@ public class MainController {
             nextStepButton.setVisible(true);
             finalStepButton.setVisible(true);
             this.grammar = new FinalGrammar(grammarTextArea.getText());
+            grammarTextArea.setEditable(false);
             if (resultGrammar.getSelectedToggle().equals(chomskyRadioButton)) {
                 progressBar.setProgress(0.2);
             } else {
-                progressBar.setProgress(0.16);
+                progressBar.setProgress(0.1666);
             }
         }
     }
@@ -124,9 +131,8 @@ public class MainController {
                     break;
             }
             showOnGrammarListView();
-            progressBar.setProgress(progressBar.progressProperty().get() + 0.16);
-            levelLabel.setText("#" + (this.level + 1));
-            this.level++;
+            progressBar.setProgress(progressBar.progressProperty().get() + 0.1666);
+            levelLabel.setText("#" + (++this.level + 1));
             if (this.level == 5) {
                 grammarStepVbox.setVisible(false);
             }

@@ -29,7 +29,7 @@ public class ProductionType {
     }
 
     public static boolean isGreibachProduction(String str) {
-        return str.matches("[A-Z]{2}|[A-Z]'[A-Z]|[A-Z][A-Z]'|[a-z]");
+        return str.matches("[a-z]([A-Z]'?)*");
     }
 
     public static List<String> toList(String rule) {

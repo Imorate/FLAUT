@@ -79,7 +79,7 @@ public class ChomskyNormalForm {
         StringBuilder stringBuilder = new StringBuilder();
         for (String unitRule : ruleList) {
             if (unitRule.matches("[a-z0-9]")) {
-                String production = getProduction(unitRule);
+                String production = getVar(unitRule);
                 if (production == null) {
                     String var = this.variableGenerator.popVariableStack();
                     stringBuilder.append(var);
@@ -113,7 +113,7 @@ public class ChomskyNormalForm {
         return rule.matches("[A-Z]{2,}");
     }
 
-    public String getProduction(String production) {
+    public String getVar(String production) {
         for (Map.Entry<String, Set<String>> entry : this.newProductions.entrySet()) {
             String rule = String.valueOf(entry.getValue().toArray()[0]);
             if (entry.getValue().size() == 1 && rule.equals(production) && isInTerminalChomskyNormalForm(rule)) {
